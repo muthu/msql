@@ -14,6 +14,12 @@ typedef enum {
     EXECUTE_SUCCESS
 }ExecuteResult;
 
+/*
+ * metaCommandState is a function that executes all the meta commands, and returns error response on unrecognized command
+ * @inputBuffer: the input buffer which stores the meta command
+ */
+ExecuteResult executeMetaExit(Statement* statement);
+
 ExecuteResult executeInsert(Statement* statement, Table* table);
 
 ExecuteResult executeSelect(Statement* statement, Table* table);

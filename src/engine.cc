@@ -1,5 +1,14 @@
 #include "engine.h"
 
+
+/*
+ * metaCommandState is a function that executes all the meta commands, and returns error response on unrecognized command
+ * @inputBuffer: the input buffer which stores the meta command
+ */
+ExecuteResult executeMetaExit(Statement* statement) {
+    exit(EXIT_SUCCESS);
+}
+
 ExecuteResult executeInsert(Statement* statement, Table* table) {
     if (table->numRows == TABLE_MAX_RECORDS) {
         return EXECUTE_TABLE_FULL;
@@ -26,10 +35,13 @@ ExecuteResult executeSelect(Statement* statement, Table* table) {
 */
 ExecuteResult executeStatement(Statement* statement, Table* table) {
     switch (statement->type) {
-        case STATEMENT_SELECT:
+        case META_EXIT:
+            return executeMetaExit(statement);
+            break;
+        case SELECT:
             return executeSelect(statement, table);
             break;
-        case STATEMENT_INSERT:
+        case INSERT:
             return executeInsert(statement, table);
             break;
     }

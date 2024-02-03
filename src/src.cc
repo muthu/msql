@@ -13,24 +13,15 @@ int main(int argc, char *argv[]) {
     while (true) {
         printPrompt();
         readInput(inputBuffer);
-        if (inputBuffer->buffer[0] == '.') {
-            switch (doMetaCommand(inputBuffer)) {
-                case META_COMMAND_SUCCESS:
-                    continue;
-                case META_COMMAND_UNRECOGNIZED_COMMAND:
-                    cout << "Unrecognized command "<<inputBuffer->buffer<<"\n";
-                    continue;
-            }
-        }
 
         Statement statement;
         switch (prepareStatement(inputBuffer, &statement)) {
-            case PREPARE_SUCCESS:
+            case SUCCESS:
                 break;
-            case PREPARE_SYNTAX_ERROR:
+            case SYNTAX_ERROR:
                 cout << "Syntax error. Could not parse statement\n";
                 continue;
-            case PREPARE_UNRECOGNIZED_STATEMENT:
+            case UNRECOGNIZED_STATEMENT:
                 cout << "Unrecognized keyword at the start of "<<inputBuffer->buffer<<"\n";
                 continue;
         
