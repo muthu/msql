@@ -2,14 +2,23 @@
  * super useful thread that explains the use of ifndef
  */
 
+// #ifndef __CSTDDEF_H__
+// #define __CSTDDEF_H__
+// #include <cstddef>
+// #endif
+
+// #ifndef __CSTDIO_H__
+// #define __CSTDIO_H__
+// #include <cstdio>
+// #endif
+
+#ifndef __STRING_H__
+#define __STRING_H__
+#include <string>
+#endif
+
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__
-
-
-#include <cstddef>
-#include <cstdio>
-#include <string>
-
 /*
  * InputBuffer is a wrapper around the buffer that is used for reading user input.
  * @buffer : stores the user input
