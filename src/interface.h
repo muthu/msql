@@ -12,9 +12,24 @@
 // #include <cstdio>
 // #endif
 
+#ifndef __MEMORY_H__
+#define __MEMORY_H__
+#include <memory>
+#endif
+
 #ifndef __STRING_H__
 #define __STRING_H__
 #include <string>
+#endif
+
+#ifndef __OSTREAM_H__
+#define __OSTREAM_H__
+#include <ostream>
+#endif
+
+#ifndef __ISTREAM_H__
+#define __ISTREAM_H__
+#include <istream>
 #endif
 
 #ifndef __INTERFACE_H__
@@ -35,18 +50,21 @@ typedef struct {
  * This function returns a pointer to the wrapper object InputBuffer
  * Initializes the buffer as an empty string, bufferLength and inputLength to 0
  */
-InputBuffer* newInputBuffer(); 
-
-/*
- * freeInputBuffer: frees in the inputBuffer object we created for storing the user input
- */
-void freeInputBuffer(InputBuffer* inputBuffer); 
+std::unique_ptr<InputBuffer> newInputBuffer(); 
 
 /*
  * readInput function reads a line of input and stores the information accordingly into the inputBuffer
  *  @inputBuffer: Pointer the inputBuffer object which is used for storing the user input
  *   if user input is empty then the program exits
  */
-void readInput(InputBuffer* inputBuffer); 
+void readInput(std::unique_ptr<InputBuffer>& inputBuffer, std::ostream& out,  std::istream& in); 
+
+
+/*
+ * readInput function reads a line of input and stores the information accordingly into the inputBuffer
+ *  @inputBuffer: Pointer the inputBuffer object which is used for storing the user input
+ *   if user input is empty then the program exits
+ */
+void readInput(std::unique_ptr<InputBuffer>& inputBuffer); 
 
 #endif

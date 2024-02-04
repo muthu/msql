@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "interface.h"
 #include "utils.h"
 #include "compiler.h"
@@ -8,7 +9,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    InputBuffer* inputBuffer = newInputBuffer();
+    std::unique_ptr<InputBuffer> inputBuffer = newInputBuffer();
     Table* table = createNewTable();
     while (true) {
         printPrompt();

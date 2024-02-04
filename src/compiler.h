@@ -35,6 +35,6 @@ typedef struct {
  * @inputBuffer: buffer storing the user input 
  * @statement: stores the type of statement being requested by the user
  */
-PrepareState prepareStatement(InputBuffer* inputBuffer, Statement* statement); 
+PrepareState prepareStatement(std::unique_ptr<InputBuffer>& inputBuffer, Statement* statement); 
 
 #endif
