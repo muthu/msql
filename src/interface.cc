@@ -24,7 +24,7 @@ void readInput(std::unique_ptr<InputBuffer>& inputBuffer, std::ostream& out,  st
     inputBuffer->inputLength = inputBuffer->buffer.size();
     if (inputBuffer->inputLength <= 0) {
         out << "Error reading input\n";
-        exit(EXIT_FAILURE);
+        // exit(EXIT_FAILURE);
     }
 }
 

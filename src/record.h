@@ -16,8 +16,8 @@
 
 typedef struct {
     uint32_t id;
-    char username[COLUMN_USERNAME_SIZE];
-    char email[COLUMN_EMAIL_SIZE];
+    std::string username;
+    std::string email;
 }Record;
 
 const uint32_t ID_SIZE = ATTRIBUTE_SIZE(Record, id);

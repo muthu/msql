@@ -20,15 +20,24 @@ PrepareState prepareStatement(std::unique_ptr<InputBuffer>& inputBuffer, Stateme
         statement->type = INSERT;
         stream >> statement->recordToInsert.id;
         if (stream.fail()) {
+            stream.clear();
             return SYNTAX_ERROR;
         }
         stream >> statement->recordToInsert.username;
         if (stream.fail()) {
+            stream.clear();
             return SYNTAX_ERROR;
+        }
+        else if (statement->recordToInsert.username.size() > COLUMN_USERNAME_SIZE) {
+            return USERNAME_OUT_OF_BOUNDS;
         }
         stream >> statement->recordToInsert.email;
         if (stream.fail()) {
+            stream.clear();
             return SYNTAX_ERROR;
+        }
+        else if (statement->recordToInsert.email.size() > COLUMN_EMAIL_SIZE) {
+            return USERNAME_OUT_OF_BOUNDS;
         }
         return SUCCESS;
     }

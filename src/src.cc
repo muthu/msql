@@ -19,14 +19,32 @@ int main(int argc, char *argv[]) {
         switch (prepareStatement(inputBuffer, &statement)) {
             case SUCCESS:
                 break;
+
             case SYNTAX_ERROR:
                 cout << "Syntax error. Could not parse statement\n";
                 continue;
             case UNRECOGNIZED_STATEMENT:
                 cout << "Unrecognized keyword at the start of "<<inputBuffer->buffer<<"\n";
                 continue;
-        
-        }
+
+            case ID_NEGATIVE:
+                cout << "User ID is negative\n";
+                continue;
+
+            case ID_OUT_OF_BOUNDS:
+                cout << "User ID is out of bounds\n";
+                continue;
+
+            case USERNAME_OUT_OF_BOUNDS:
+                cout << "Username is negative\n";
+                continue;
+
+            case EMAIL_OUT_OF_BOUNDS:
+                cout << "Email is negative\n";
+                continue;
+
+              break;
+            }
 
         switch (executeStatement(&statement, table)) {
             case EXECUTE_SUCCESS:

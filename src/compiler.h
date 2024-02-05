@@ -17,6 +17,10 @@ typedef enum {
     SUCCESS,
     SYNTAX_ERROR,
     UNRECOGNIZED_STATEMENT,
+    ID_NEGATIVE,
+    ID_OUT_OF_BOUNDS,
+    USERNAME_OUT_OF_BOUNDS,
+    EMAIL_OUT_OF_BOUNDS
 }PrepareState;
 
 typedef enum {

@@ -1,5 +1,4 @@
 #include "gtest/gtest.h"
-#include <cstdio>
 #include <iostream>
 #include <memory>
 #include <ostream>
@@ -11,10 +10,10 @@
 
 using namespace std;
 
-std::unique_ptr<InputBuffer> inputBuffer = newInputBuffer();
 Table* table = createNewTable();
 
 void insertOneRecord(std::ostream& out, std::istream& in) {
+    std::unique_ptr<InputBuffer> inputBuffer = newInputBuffer();
     printPrompt(out);
     readInput(inputBuffer, out, in);
 
@@ -27,6 +26,21 @@ void insertOneRecord(std::ostream& out, std::istream& in) {
             break;
         case UNRECOGNIZED_STATEMENT:
             out << "Unrecognized keyword at the start of "<<inputBuffer->buffer<<"\n";
+            break;
+        case ID_NEGATIVE:
+            out << "User ID is negative\n";
+            break;
+
+        case ID_OUT_OF_BOUNDS:
+            out << "User ID is out of bounds\n";
+            break;
+
+        case USERNAME_OUT_OF_BOUNDS:
+            out << "Username is negative\n";
+            break;
+
+        case EMAIL_OUT_OF_BOUNDS:
+            out << "Email is negative\n";
             break;
     }
 
