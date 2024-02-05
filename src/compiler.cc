@@ -1,5 +1,6 @@
 #include "compiler.h"
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 /*
@@ -18,11 +19,32 @@ PrepareState prepareStatement(std::unique_ptr<InputBuffer>& inputBuffer, Stateme
     }
     if (command == "insert") {
         statement->type = INSERT;
-        stream >> statement->recordToInsert.id;
+        std::string id;
+
+        stream >> id;
+        if (id[0] == '-') {
+            return ID_NEGATIVE;
+        }
         if (stream.fail()) {
             stream.clear();
             return SYNTAX_ERROR;
         }
+        try {
+            unsigned long temp = std::stoul(id);
+            uint32_t val = temp;
+            if (val != temp) {
+                throw std::out_of_range("Limit Exceeded");
+            }
+            statement->recordToInsert.id = val;
+        }
+        catch (std::invalid_argument& e) {
+            return SYNTAX_ERROR;
+        }
+        catch (std::out_of_range& e) {
+            return ID_OUT_OF_BOUNDS;
+        }
+
+
         stream >> statement->recordToInsert.username;
         if (stream.fail()) {
             stream.clear();
@@ -37,7 +59,7 @@ PrepareState prepareStatement(std::unique_ptr<InputBuffer>& inputBuffer, Stateme
             return SYNTAX_ERROR;
         }
         else if (statement->recordToInsert.email.size() > COLUMN_EMAIL_SIZE) {
-            return USERNAME_OUT_OF_BOUNDS;
+            return EMAIL_OUT_OF_BOUNDS;
         }
         return SUCCESS;
     }

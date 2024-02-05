@@ -44,7 +44,7 @@ TEST(readInputTests, correctExit) {
 
 TEST(readInputTests, idOutOfBounds) {
     Statement statement;
-    string inp = "insert 2147483648 foo foo@bar.com";
+    string inp = "insert 4294967296 foo foo@bar.com";
     PrepareState result = func(inp, statement);
     EXPECT_EQ(result, ID_OUT_OF_BOUNDS);
 }

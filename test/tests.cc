@@ -61,7 +61,6 @@ TEST(tableSimulation, insertOneRecord) {
     string inp = "insert 1 foo foo@bar.com";
     istringstream in(inp);
     insertOneRecord(out, in);
-    cout<<out.str();
     // string output = testing::internal::GetCapturedStdout();
     // cout<<output<<"\n";
     EXPECT_EQ(out.str(), "db > Executed\n");
