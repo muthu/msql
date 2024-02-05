@@ -7,7 +7,7 @@ using namespace std;
 
 
 // always use full directory path for the txt file
-TEST(readInputTests, zeroInput) {
+TEST(interfaceTests, zeroInput) {
     std::unique_ptr<InputBuffer> inputBuffer = newInputBuffer();
     ostringstream out;
     string inp = "";

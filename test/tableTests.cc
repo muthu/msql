@@ -6,7 +6,7 @@
 
 using namespace std;
 
-TEST(readInputTests, executeInsert) {
+TEST(engineTests, executeInsert) {
     Record record;
     Statement statement;
     statement.recordToInsert.id = 1;
@@ -19,7 +19,7 @@ TEST(readInputTests, executeInsert) {
     EXPECT_EQ(result, EXECUTE_SUCCESS);
 }
 
-TEST(readInputTests, executeTableFull) {
+TEST(engineTests, executeTableFull) {
     Record record;
     Statement statement;
     statement.recordToInsert.id = 1;
@@ -35,7 +35,7 @@ TEST(readInputTests, executeTableFull) {
     EXPECT_EQ(result, EXECUTE_TABLE_FULL);
 }
 
-TEST(readInputTests, executeSelect) {
+TEST(engineTests, executeSelect) {
     Record record;
     Statement statement;
     statement.type = INSERT;
